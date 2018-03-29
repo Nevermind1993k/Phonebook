@@ -56,11 +56,16 @@
             <optional>true</optional>
         </dependency>
 
-        <!--Apache-->
+        <!--Additional libs-->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity4</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>${commons-dbcp2.version}</version>
         </dependency>
+
     </dependencies>
 </project>

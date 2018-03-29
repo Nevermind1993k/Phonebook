@@ -5,6 +5,7 @@ import com.nevermind.bu.entity.User;
 import com.nevermind.bu.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import utilities.UserExistException;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -20,5 +21,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getByUserName(String userName) {
         return userDao.findByUserName(userName);
+    }
+
+    @Override
+    public User registerNewUserAccount(User user) throws UserExistException {
+        try {
+            return userDao.save(user);
+        } catch (Exception e) {
+            throw new UserExistException();
+        }
     }
 }

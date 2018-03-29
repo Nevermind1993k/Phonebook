@@ -11,10 +11,4 @@ public class HomeController {
         return "hello";
     }
 
-    @GetMapping("/login")
-    public String loginPage() {
-        return "loginPage";
-    }
-
-
 }
