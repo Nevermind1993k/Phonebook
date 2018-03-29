@@ -1,0 +1,20 @@
+<html layout:decorator="customLayout" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<div layout:fragment="content">
+
+    <div class="jumbotron">
+        <form class="form-group" th:action="@{/login}" method="post">
+            <h2>Please Sign In</h2>
+
+            <label for="username"></label>
+            <input class="form-control" type="text" id="username" name="username" placeholder="Username"/>
+            <label for="password"></label>
+            <input class="form-control" type="password" id="password" name="password" placeholder="Password"/> <br/>
+            <input class="btn btn-lg btn-block btn-primary" type="submit" value="Log in"/>
+        </form>
+
+    </div>
+</div>
+</html>
