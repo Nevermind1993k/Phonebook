@@ -3,12 +3,18 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <div layout:fragment="content">
-
-    <div class="jumbotron">
-        <h2>Welcome to Phone Book Application!</h2>
-        <p sec:authorize="!isAuthenticated()" > <a class="btn btn-lg btn-success" href="/login" role="button"> Login </a></p>
-        <p sec:authorize="!isAuthenticated()" > <a class="btn btn-lg btn-success" href="/register" role="button"> Register </a></p>
-        <p sec:authorize="isAuthenticated()" > <a class="btn btn-lg btn-success" href="/logout" role="button"> Logout </a></p>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <div class="jumbotron">
+                    <h2>Welcome to Phone Book Application!</h2>
+                    <p sec:authorize="!isAuthenticated()"><a class="btn btn-primary center-block" href="/login" role="button"> Login </a></p>
+                    <p sec:authorize="!isAuthenticated()"><a class="btn btn-primary center-block" href="/register" role="button"> Register </a></p>
+                    <p sec:authorize="isAuthenticated()"><a class="btn btn-primary center-block" href="/contacts" role="button"> Contacts </a></p>
+                    <p sec:authorize="isAuthenticated()"><a class="btn btn-primary center-block" href="/logout" role="button"> Logout </a></p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </html>

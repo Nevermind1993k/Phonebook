@@ -31,7 +31,7 @@ public class UserController {
         return "registerUser";
     }
 
-    /*@PostMapping("/register")
+    @PostMapping("/register")
     public String registerUserAccount(@Valid User user, Errors errors, Model model) {
         if (errors.hasErrors()) {
             return "registerUser";
@@ -46,5 +46,5 @@ public class UserController {
             return "registerUser";
         }
 
-    }*/
+    }
 }

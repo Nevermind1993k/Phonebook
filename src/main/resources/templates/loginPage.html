@@ -5,20 +5,32 @@
 <div layout:fragment="content">
 
     <div class="jumbotron">
-        <form class="form-group" th:action="@{/login}" method="post">
-            <h2>Please Sign In</h2>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <div class="page-menu">
+                        <a href="/">Main</a> > Sign In
+                    </div>
 
-            <label for="username"></label>
-            <input class="form-control" type="text" id="username" name="username" placeholder="Username"/>
-            <label for="password"></label>
-            <input class="form-control" type="password" id="password" name="password" placeholder="Password"/> <br/>
-            <input class="btn btn-lg btn-block btn-primary" type="submit" value="Log in"/>
-        </form>
+                    <div class="form-signin">
+                        <h2 class="form-signin-heading">Please Sign In</h2>
 
-        <form th:action="@{/register}">
-            <button class="btn btn-lg btn-block btn-primary">Register</button>
-        </form>
+                        <div class="bg-danger" align="center" th:if="${param.error}">
+                            <h4>Wrong username or password</h4>
+                        </div>
 
+                        <form th:action="@{/login}" method="POST">
+                            <input class="form-control" type="text" id="username" name="username" placeholder="Username"/>
+                            <input class="form-control" type="password" id="password" name="password" placeholder="Password"/> <br/>
+                            <input class="btn btn-primary center-block" type="submit" value="Log in"/>
+                            <a class="btn btn-primary center-block" href="/register" role="button"> Register </a>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>
 </html>
