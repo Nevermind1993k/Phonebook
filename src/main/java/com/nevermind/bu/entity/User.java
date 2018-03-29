@@ -20,6 +20,9 @@ public class User {
     private String password;
 
     @Column
+    private String name;
+
+    @Column
     private String lastName;
 
     @Column
