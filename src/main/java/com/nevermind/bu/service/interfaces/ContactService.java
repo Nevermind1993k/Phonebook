@@ -6,19 +6,19 @@ import java.util.List;
 
 public interface ContactService {
 
-    Contact getById(int id, String userName);
+    Contact getById(int id, int userId);
 
-    List<Contact> getAll(String userName);
+    List<Contact> getAll(int userId);
 
-    Contact save(Contact contact, String userName);
+    Contact save(Contact contact, int userId);
 
-    void delete(int id, String userName);
+    void delete(int id, int userId);
 
     Contact update(Contact contact);
 
-    List<Contact> getByName(String Name, String userName);
+    List<Contact> getByName(String Name, int userId);
 
-    List<Contact> getByLastName(String lastName, String userName);
+    List<Contact> getByLastName(String lastName, int userId);
 
-    List<Contact> getByMobilePhone(String mobilePhone, String userName);
+    List<Contact> getByMobilePhone(String mobilePhone, int userId);
 }

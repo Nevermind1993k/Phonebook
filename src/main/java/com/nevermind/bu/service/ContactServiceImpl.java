@@ -21,28 +21,30 @@ public class ContactServiceImpl implements ContactService {
     UserDao userDao;
 
     @Override
-    public Contact getById(int id, String userName) {
-        return contactDao.findAllByUserName(userName).stream().filter(contact -> contact.getId() == id)
+    public Contact getById(int id, int userId) {
+        return contactDao.findAllByUserId(userId).stream().filter(contact -> contact.getId() == id)
                 .findFirst().orElse(null);
     }
 
     @Override
-    public List<Contact> getAll(String userName) {
-        List<Contact> allContacts = contactDao.findAllByUserName(userName);
-        User user = userDao.findByUserName(userName);
+    public List<Contact> getAll(int userId) {
+        List<Contact> allContacts = contactDao.findAllByUserId(userId);
+        User user = userDao.findById(userId);
         allContacts.forEach(contact -> contact.setUser(user));
         return allContacts;
     }
 
     @Override
-    public Contact save(Contact contact, String userName) {
-        contact.setUser(userDao.findByUserName(userName));
+    public Contact save(Contact contact, int userId) {
+        contact.setUser(userDao.findById(userId));
         return contactDao.save(contact);
     }
 
     @Override
-    public void delete(int id, String userName) {
-        contactDao.delete(id);
+    public void delete(int id, int userId) {
+        Contact found = contactDao.findAllByUserId(userId).stream().filter(contact -> contact.getId() == id)
+                .findFirst().orElse(null);
+        contactDao.delete(found);
     }
 
     @Override
@@ -51,21 +53,21 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> getByName(String name, String userName) {
-        List<Contact> contactList = contactDao.findAllByUserName(userName);
+    public List<Contact> getByName(String name, int userId) {
+        List<Contact> contactList = contactDao.findAllByUserId(userId);
         return contactList.stream().filter(contact -> contact.getName().equals(name)).collect(Collectors.toList());
     }
 
     @Override
-    public List<Contact> getByLastName(String lastName, String userName) {
-        List<Contact> contactList = contactDao.findAllByUserName(userName);
+    public List<Contact> getByLastName(String lastName, int userId) {
+        List<Contact> contactList = contactDao.findAllByUserId(userId);
         return contactList.stream()
                 .filter(contact -> contact.getLastName().equals(lastName)).collect(Collectors.toList());
     }
 
     @Override
-    public List<Contact> getByMobilePhone(String mobilePhone, String userName) {
-        List<Contact> contactList = contactDao.findAllByUserName(userName);
+    public List<Contact> getByMobilePhone(String mobilePhone, int userId) {
+        List<Contact> contactList = contactDao.findAllByUserId(userId);
         return contactList.stream()
                 .filter(contact -> contact.getMobilePhoneNumber().equals(mobilePhone)).collect(Collectors.toList());
     }
