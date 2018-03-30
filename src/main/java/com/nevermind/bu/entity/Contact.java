@@ -38,7 +38,7 @@ public class Contact {
 
     @Pattern(regexp = "\\+380\\(44\\)[0-9]{7}"
             , message = "Phone number must be in public telephone network of Ukraine format" +
-            "example: +380(44 )1234567")
+            "example: +380(44)1234567")
     private String homePhoneNumber;
 
     private String address;
