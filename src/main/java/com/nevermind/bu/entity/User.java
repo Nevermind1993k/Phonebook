@@ -19,6 +19,7 @@ public class User {
     @Pattern(regexp = "[a-zA-Z]+", message = "Username must have only English characters, " +
             "without special characters")
     @Size(min = 3, message = "Username size must be more then 3")
+    @Column(unique = true)
     private String userName;
 
     @Size(min = 5, message = "Password size must be more then 5")
