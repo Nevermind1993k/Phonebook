@@ -2,9 +2,11 @@ package com.nevermind.bu.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
@@ -28,13 +30,20 @@ public class Contact {
     @NotNull(message = "Middle name must be not null")
     private String middleName;
 
+    @Pattern(regexp = "\\+380\\([1-9]{2}\\)[0-9]{7}"
+            , message = "Phone number must be in Ukraine International mobile format" +
+            "example: +380(66)1234567")
     @NotNull(message = "Phone number mu be not null")
     private String mobilePhoneNumber;
 
+    @Pattern(regexp = "\\+380\\(44\\)[0-9]{7}"
+            , message = "Phone number must be in public telephone network of Ukraine format" +
+            "example: +380(44 )1234567")
     private String homePhoneNumber;
 
     private String address;
 
+    @Email(regexp = ".+@.+\\..+|^$", message = "Wrong email format")
     private String email;
 
     @ManyToOne(fetch = FetchType.EAGER)
