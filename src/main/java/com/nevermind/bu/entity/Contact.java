@@ -18,18 +18,22 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(nullable = false)
     @Size(min = 4, message = "Name size must be more then 4")
     @NotNull(message = "Name must be not null")
     private String name;
 
+    @Column(nullable = false)
     @Size(min = 4, message = "Last name size must be more then 4")
     @NotNull(message = "Last name must be not null")
     private String lastName;
 
+    @Column(nullable = false)
     @Size(min = 4, message = "Middle name size must be more then 4")
     @NotNull(message = "Middle name must be not null")
     private String middleName;
 
+    @Column(nullable = false)
     @Pattern(regexp = "\\+380\\([1-9]{2}\\)[0-9]{7}"
             , message = "Phone number must be in Ukraine International mobile format" +
             "example: +380(66)1234567")

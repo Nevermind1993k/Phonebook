@@ -4,9 +4,11 @@ import com.nevermind.bu.entity.Contact;
 
 import java.util.List;
 
-public interface ContactServie {
+public interface ContactService {
 
     Contact getById(int id);
+
+    List<Contact> getAll();
 
     List<Contact> getByName(String name);
 

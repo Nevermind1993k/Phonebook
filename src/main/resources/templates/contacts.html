@@ -3,15 +3,39 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <div layout:fragment="content">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="text-center">
-                <div class="jumbotron">
-                    <h2>This is All contacts page!</h2>
-
-                </div>
+    <div class="jumbotron">
+        <div class="page-menu">
+            <a href="/">Main</a> > Contact List
+        </div>
+        <div class="container">
+            <div th:if="${not #lists.isEmpty(contacts)}">
+                <h2> Welcome to Contact List</h2>
+                <table id="contactsTable" class="table table-stripped">
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Last Name</th>
+                        <th>Middle Name</th>
+                        <th>Mobile Number</th>
+                        <th>Home Number</th>
+                        <th>Address</th>
+                        <th>Email</th>
+                    </tr>
+                    <tr th:each="contact : ${contacts}">
+                        <td><a th:href="@{/contact/{path}(path=${contact.id})}" th:text="${contact.id}"> </a></td>
+                        <td th:text="${contact.name}"></td>
+                        <td th:text="${contact.lastName}"></td>
+                        <td th:text="${contact.middleName}"></td>
+                        <td th:text="${contact.mobilePhoneNumber}"></td>
+                        <td th:text="${contact.homePhoneNumber}"></td>
+                        <td th:text="${contact.address}"></td>
+                        <td th:text="${contact.email}"></td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
+
+
 </div>
 </html>

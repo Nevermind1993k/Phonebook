@@ -2,12 +2,14 @@ package com.nevermind.bu.service;
 
 import com.nevermind.bu.dao.ContactDao;
 import com.nevermind.bu.entity.Contact;
-import com.nevermind.bu.service.interfaces.ContactServie;
+import com.nevermind.bu.service.interfaces.ContactService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class ContactServiceImpl implements ContactServie {
+@Service
+public class ContactServiceImpl implements ContactService {
 
     @Autowired
     private ContactDao contactDao;
@@ -15,6 +17,11 @@ public class ContactServiceImpl implements ContactServie {
     @Override
     public Contact getById(int id) {
         return contactDao.findById(id);
+    }
+
+    @Override
+    public List<Contact> getAll() {
+        return contactDao.findAll();
     }
 
     @Override

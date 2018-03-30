@@ -17,23 +17,27 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(unique = true, nullable = false)
+    @Size(min = 3, message = "Username size must be more then 3")
     @Pattern(regexp = "[a-zA-Z]+", message = "Username must have only English characters, " +
             "without special characters")
-    @Size(min = 3, message = "Username size must be more then 3")
-    @Column(unique = true)
     private String userName;
 
+    @Column(nullable = false)
     @Size(min = 5, message = "Password size must be more then 5")
     private String password;
 
+    @Column(unique = true, nullable = false)
     @Size(min = 5, message = "Name size must be more then 5")
     @NotNull(message = "Name must be not null")
     private String name;
 
+    @Column(nullable = false)
     @Size(min = 5, message = "Last name size must be more then 5")
     @NotNull(message = "Last name must be not null")
     private String lastName;
 
+    @Column(nullable = false)
     @Size(min = 5, message = "Middle name size must be more then 5")
     @NotNull(message = "Middle name must be not null")
     private String middleName;
