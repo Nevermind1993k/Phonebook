@@ -40,6 +40,8 @@ public class Contact {
 
     private String email;
 
+    private User user;
+
     public Contact() {
     }
 
