@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 @Data
@@ -36,6 +37,9 @@ public class User {
     @Size(min = 5, message = "Middle name size must be more then 5")
     @NotNull(message = "Middle name must be not null")
     private String middleName;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Contact> contacts;
 
     public User() {
     }
