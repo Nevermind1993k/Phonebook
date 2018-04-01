@@ -1,4 +1,4 @@
-package utilities;
+package exception;
 
 public class UserExistException extends Exception {
     @Override

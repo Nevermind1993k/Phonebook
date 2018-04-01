@@ -24,4 +24,6 @@ public interface ContactService {
 
     void delete(int id);
 
+    void delete(Contact contact);
+
 }

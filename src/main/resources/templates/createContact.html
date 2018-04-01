@@ -1,0 +1,48 @@
+<html layout:decorator="customLayout" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+<div layout:fragment="content">
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <div class="page-menu">
+                        <a href="/">Main</a> > <a href="/contact/all"> Contact List </a> > Create Contact
+                    </div>
+
+                    <h2>Create New Contact</h2>
+                    <div class="form-register">
+                        <form action="create" th:action="@{/contact/create}" th:object="${contact}" method="POST" enctype="utf8">
+                            <label class="bg-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></label>
+                            <input class="form-control" type="text" placeholder="First Name" th:field="*{firstName}"/>
+
+                            <label class="bg-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></label>
+                            <input class="form-control" type="text" placeholder="Last Name" th:field="*{lastName}"/>
+
+                            <label class="bg-danger" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"></label>
+                            <input class="form-control" type="text" placeholder="Middle Name" th:field="*{middleName}"/>
+
+                            <label class="bg-danger" th:if="${#fields.hasErrors('mobilePhoneNumber')}" th:errors="*{mobilePhoneNumber}"></label>
+                            <input class="form-control" type="text" placeholder="Mobile" th:field="*{mobilePhoneNumber}"/>
+
+                            <label class="bg-danger" th:if="${#fields.hasErrors('homePhoneNumber')}" th:errors="*{homePhoneNumber}"></label>
+                            <input class="form-control" type="text" placeholder="Home Number" th:field="*{homePhoneNumber}"/>
+
+                            <label class="bg-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></label>
+                            <input class="form-control" type="text" placeholder="Address" th:field="*{address}"/>
+
+                            <label class="bg-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
+                            <input class="form-control" type="text" placeholder="Email" th:field="*{email}"/>
+
+                            <input class="btn btn-primary center-block" type="submit" value="Create" name="create"/>
+                            <a class="btn btn-primary center-block" href="/contact/all" role="button"> Back </a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

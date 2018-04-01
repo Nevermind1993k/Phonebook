@@ -3,40 +3,50 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <div layout:fragment="content">
-    <div class="jumbotron">
-        <div class="page-menu">
-            <a href="/">Main</a> > Contact List
-        </div>
-        <div class="container">
-            <h2 th:if="${#lists.isEmpty(contactList)}">You don't have any Contacts</h2>
-            <div th:if="${not #lists.isEmpty(contactList)}">
-                <h2> Welcome to Contact List</h2>
-                <table id="contactsTable" class="table table-stripped">
-                    <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Last Name</th>
-                        <th>Middle Name</th>
-                        <th>Mobile Number</th>
-                        <th>Home Number</th>
-                        <th>Address</th>
-                        <th>Email</th>
-                    </tr>
-                    <tr th:each="contact : ${contactList}">
-                        <td><a th:href="@{/contact/{path}(path=${contact.id})}" th:text="${contact.id}"> </a></td>
-                        <td th:text="${contact.firstName}"></td>
-                        <td th:text="${contact.lastName}"></td>
-                        <td th:text="${contact.middleName}"></td>
-                        <td th:text="${contact.mobilePhoneNumber}"></td>
-                        <td th:text="${contact.homePhoneNumber}"></td>
-                        <td th:text="${contact.address}"></td>
-                        <td th:text="${contact.email}"></td>
-                    </tr>
-                </table>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <div class="jumbotron">
+                    <div class="page-menu">
+                        <a href="/">Main</a> > Contact List
+                    </div>
+                    <div class="container">
+                        <h2 th:if="${#lists.isEmpty(contactList)}">You don't have any Contacts</h2>
+                        <div th:if="${not #lists.isEmpty(contactList)}">
+                            <h2> Welcome to Contact List</h2> <br/>
+                            <table id="contactsTable" class="table table-stripped">
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Last Name</th>
+                                    <th>Middle Name</th>
+                                    <th>Mobile</th>
+                                    <th>Home Number</th>
+                                    <th>Address</th>
+                                    <th>Email</th>
+                                    <th>Delete</th>
+                                </tr>
+                                <tr th:each="contact : ${contactList}">
+                                    <td><a th:href="@{/contact/{path}(path=${contact.id})}" th:text="${contact.id}"> </a></td>
+                                    <td th:text="${contact.firstName}"></td>
+                                    <td th:text="${contact.lastName}"></td>
+                                    <td th:text="${contact.middleName}"></td>
+                                    <td th:text="${contact.mobilePhoneNumber}"></td>
+                                    <td th:text="${contact.homePhoneNumber}"></td>
+                                    <td th:text="${contact.address}"></td>
+                                    <td th:text="${contact.email}"></td>
+                                    <td><a th:href="@{/contact/delete/{path}(path=${contact.id})}" th:text="X"> </a></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary center-block" href="/contact/create" role="button"> Create Contact</a>
+                    <a class="btn btn-primary center-block" href="/" role="button"> Back </a>
+                </div>
             </div>
         </div>
     </div>
-
 
 </div>
 </html>

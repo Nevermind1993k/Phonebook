@@ -47,7 +47,8 @@ public class Contact {
 
     private String address;
 
-    @Email(regexp = ".+@.+\\..+|^$", message = "Wrong email format")
+    @Email(regexp = ".+@.+\\..+|^$", message = "Wrong email format" +
+            "example: somemail@gmail.com")
     private String email;
 
     @ManyToOne(fetch = FetchType.EAGER)

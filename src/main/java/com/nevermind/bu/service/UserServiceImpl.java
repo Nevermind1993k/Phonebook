@@ -5,7 +5,7 @@ import com.nevermind.bu.entity.User;
 import com.nevermind.bu.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import utilities.UserExistException;
+import exception.UserExistException;
 
 @Service
 public class UserServiceImpl implements UserService {

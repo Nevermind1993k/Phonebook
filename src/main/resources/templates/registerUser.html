@@ -16,14 +16,14 @@
                     <p class="bg-danger" align="center" th:if="${#bools.isTrue(duplicate)}" th:text="${errorMsg}"></p>
                     <div class="form-register">
                         <form action="/register" th:action="@{/register}" th:object="${user}" method="POST" enctype="utf8">
-                            <label class="bg-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{userName}"></label>
-                            <input class="form-control" type="text" placeholder="Username" th:field="*{userName}"/>
+                            <label class="bg-danger" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></label>
+                            <input class="form-control" type="text" placeholder="Username" th:field="*{username}"/>
 
                             <label class="bg-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
                             <input class="form-control" type="password" placeholder="Password" th:field="*{password}"/><br/>
 
-                            <label class="bg-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{name}"></label>
-                            <input class="form-control" type="text" placeholder="Name" th:field="*{name}"/>
+                            <label class="bg-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></label>
+                            <input class="form-control" type="text" placeholder="Name" th:field="*{firstName}"/>
 
                             <label class="bg-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></label>
                             <input class="form-control" type="text" placeholder="Last name" th:field="*{lastName}"/>

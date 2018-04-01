@@ -1,7 +1,7 @@
 package com.nevermind.bu.service.interfaces;
 
 import com.nevermind.bu.entity.User;
-import utilities.UserExistException;
+import exception.UserExistException;
 
 public interface UserService {
 
