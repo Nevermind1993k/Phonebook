@@ -21,7 +21,7 @@ public class Contact {
     @Column(nullable = false)
     @Size(min = 4, message = "Name size must be more then 4")
     @NotNull(message = "Name must be not null")
-    private String name;
+    private String firstName;
 
     @Column(nullable = false)
     @Size(min = 4, message = "Last name size must be more then 4")

@@ -21,7 +21,7 @@ public class User {
     @Size(min = 3, message = "Username size must be more then 3")
     @Pattern(regexp = "[a-zA-Z]+", message = "Username must have only English characters, " +
             "without special characters")
-    private String userName;
+    private String username;
 
     @Column(nullable = false)
     @Size(min = 5, message = "Password size must be more then 5")
@@ -30,7 +30,7 @@ public class User {
     @Column(unique = true, nullable = false)
     @Size(min = 5, message = "Name size must be more then 5")
     @NotNull(message = "Name must be not null")
-    private String name;
+    private String firstName;
 
     @Column(nullable = false)
     @Size(min = 5, message = "Last name size must be more then 5")

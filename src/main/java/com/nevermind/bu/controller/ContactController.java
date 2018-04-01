@@ -7,9 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.security.Principal;
 
 @Controller
-@RequestMapping("/contact")
+@RequestMapping("contact")
 public class ContactController {
 
     @Autowired
@@ -19,8 +22,8 @@ public class ContactController {
     private UserService userService;
 
     @GetMapping("/all")
-    public String getAll(Model model) {
-        model.addAttribute("contacts", contactService.getAll());
+    public String getAll(Model model, Principal principal) {
+        model.addAttribute("contactList", contactService.getAllByUserName(principal.getName()));
         return "contacts";
     }
 

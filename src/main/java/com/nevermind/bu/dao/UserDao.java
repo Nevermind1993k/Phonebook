@@ -9,5 +9,5 @@ public interface UserDao extends JpaRepository<User, Integer> {
 
     User findById(int id);
 
-    User findByUserName(String userName);
+    User findByUsername(String username);
 }

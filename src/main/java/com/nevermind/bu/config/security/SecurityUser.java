@@ -12,10 +12,10 @@ public class SecurityUser extends User implements UserDetails {
 
     SecurityUser(User user) {
         this.setId(user.getId());
-        this.setName(user.getName());
+        this.setFirstName(user.getFirstName());
         this.setLastName(user.getLastName());
         this.setMiddleName(user.getMiddleName());
-        this.setUserName(user.getUserName());
+        this.setUsername(user.getUsername());
         this.setPassword(user.getPassword());
     }
 
@@ -26,7 +26,7 @@ public class SecurityUser extends User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return super.getName();
+        return super.getUsername();
     }
 
     @Override

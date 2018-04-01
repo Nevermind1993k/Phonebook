@@ -10,7 +10,9 @@ public interface ContactService {
 
     List<Contact> getAll();
 
-    List<Contact> getByName(String name);
+    List<Contact> getAllByUserName(String username);
+
+    List<Contact> getByFirstName(String firstName);
 
     List<Contact> getByLastName(String lastName);
 
