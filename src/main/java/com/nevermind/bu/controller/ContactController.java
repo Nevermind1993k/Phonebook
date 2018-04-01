@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -34,14 +35,33 @@ public class ContactController {
     }
 
     @GetMapping("/{id}")
-    public String showContact(@PathVariable("id") int id, Model model) {
-        model.addAttribute("contact", contactService.getById(id));
+    public String showContact(@PathVariable("id") int id, Model model, Principal principal) {
+        String pUsername = principal.getName();
+        Contact contactById = contactService.getById(id);
+
+        if (!pUsername.equals(contactById.getUser().getUsername())) {
+            return "redirect:/error";
+        }
+        model.addAttribute("contact", contactById);
+        return "showContact";
+    }
+
+    @PostMapping("/{id}")
+    public String editContact(@PathVariable("id") int id, @Valid Contact contact, Errors errors,
+                              Model model, Principal principal) {
+        String pUsername = principal.getName();
+        Contact contactById = contactService.getById(id);
+
+        if (!pUsername.equals(contactById.getUser().getUsername())) {
+            return "redirect:/error";
+        }
         return "showContact";
     }
 
     @GetMapping("/create")
     public String showCreateContactForm(Model model) {
         Contact contact = new Contact();
+
         model.addAttribute("contact", contact);
         return "createContact";
     }
@@ -49,10 +69,10 @@ public class ContactController {
     @PostMapping("/create")
     public String createNewContact(@Valid Contact contact, Errors errors, Model model, Principal principal) {
         User user = userService.getByUsername(principal.getName());
+
         if (errors.hasErrors()) {
             return "createContact";
         }
-
         contact.setUser(user);
         Contact newContact = contactService.createNewContact(contact);
         model.addAttribute("contact", newContact);
@@ -60,10 +80,15 @@ public class ContactController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteContact(@PathVariable("id") int id) {
-        Contact contact = contactService.getById(id);
-        contact.setUser(null);
-        contactService.delete(contact);
+    public String deleteContact(@PathVariable("id") int id, Principal principal) {
+        String pUsername = principal.getName();
+        Contact contactById = contactService.getById(id);
+
+        if (!pUsername.equals(contactById.getUser().getUsername())) {
+            return "redirect:/error";
+        }
+        contactById.setUser(null);
+        contactService.delete(contactById);
         return "redirect:/contact/all";
     }
 
