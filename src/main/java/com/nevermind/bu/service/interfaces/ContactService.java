@@ -12,12 +12,6 @@ public interface ContactService {
 
     List<Contact> getAllByUserName(String username);
 
-    List<Contact> getByFirstName(String firstName);
-
-    List<Contact> getByLastName(String lastName);
-
-    List<Contact> getByMobileNumber(String mobileNumber);
-
     Contact createNewContact(Contact contact);
 
     void update(Contact contact);

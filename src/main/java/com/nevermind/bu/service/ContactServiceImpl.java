@@ -30,21 +30,6 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<Contact> getByFirstName(String firstName) {
-        return contactDao.findAllByFirstName(firstName);
-    }
-
-    @Override
-    public List<Contact> getByLastName(String lastName) {
-        return contactDao.findAllByLastName(lastName);
-    }
-
-    @Override
-    public List<Contact> getByMobileNumber(String mobileNumber) {
-        return contactDao.findAllByMobilePhoneNumber(mobileNumber);
-    }
-
-    @Override
     public Contact createNewContact(Contact contact) {
         return contactDao.save(contact);
     }

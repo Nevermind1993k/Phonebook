@@ -13,9 +13,4 @@ public interface ContactDao extends JpaRepository<Contact, Integer> {
 
     List<Contact> findAllByUserUsername(String username);
 
-    List<Contact> findAllByFirstName(String firstName);
-
-    List<Contact> findAllByLastName(String lastName);
-
-    List<Contact> findAllByMobilePhoneNumber(String mobilePhone);
 }
