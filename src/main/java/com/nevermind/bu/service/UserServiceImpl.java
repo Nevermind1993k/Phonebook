@@ -2,10 +2,10 @@ package com.nevermind.bu.service;
 
 import com.nevermind.bu.dao.UserDao;
 import com.nevermind.bu.entity.User;
+import com.nevermind.bu.exception.UserExistException;
 import com.nevermind.bu.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import exception.UserExistException;
 
 @Service
 public class UserServiceImpl implements UserService {

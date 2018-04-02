@@ -1,6 +1,7 @@
 package com.nevermind.bu.controller;
 
 import com.nevermind.bu.entity.User;
+import com.nevermind.bu.exception.UserExistException;
 import com.nevermind.bu.service.interfaces.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import exception.UserExistException;
 
 import javax.validation.Valid;
 

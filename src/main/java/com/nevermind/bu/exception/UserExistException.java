@@ -1,4 +1,4 @@
-package exception;
+package com.nevermind.bu.exception;
 
 public class UserExistException extends Exception {
     @Override
