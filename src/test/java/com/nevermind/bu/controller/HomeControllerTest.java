@@ -10,7 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class HomeControllerTest {
 
     @Test
-    public void shouldHelloPage() throws Exception {
+    public void shouldShowHelloPage() throws Exception {
         HomeController controller = new HomeController();
         MockMvc mockMvc = standaloneSetup(controller).build();
 
