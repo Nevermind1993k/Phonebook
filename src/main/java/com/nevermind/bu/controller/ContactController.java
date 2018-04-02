@@ -111,5 +111,4 @@ public class ContactController {
         return "redirect:/contact/all";
     }
 
-
 }

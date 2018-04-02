@@ -3,7 +3,6 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <div layout:fragment="content">
-
     <div class="row">
         <div class="col-sm-12">
             <div class="text-center">
@@ -12,9 +11,22 @@
                         <a href="/">Main</a> > Contact List
                     </div>
                     <div class="container">
+                        <h2> Welcome to Contact List</h2> <br/>
+
+                        <form class="form-register" role="search">
+                            <div class="form-group">
+                                <input type="text" id="searchForFirstName" class="form-control"  onkeyup="searchByFirstName()"
+                                       placeholder="Search for Names..."/>
+                                <input type="text" id="searchForLastName" class="form-control" onkeyup="searchByLastName()"
+                                       placeholder="Search for Last Names..."/>
+                                <input type="text" id="searchForMobilePhone" class="form-control" onkeyup="searchByMobile()"
+                                       placeholder="Search for Mobile Number..."/>
+                            </div>
+                        </form>
+
                         <h2 th:if="${#lists.isEmpty(contactList)}">You don't have any Contacts</h2>
                         <div th:if="${not #lists.isEmpty(contactList)}">
-                            <h2> Welcome to Contact List</h2> <br/>
+
                             <table id="contactsTable" class="table table-stripped">
                                 <tr>
                                     <th>Id</th>
@@ -32,17 +44,87 @@
                                     <td th:text="${contact.middleName}"></td>
                                     <td th:text="${contact.mobilePhoneNumber}"></td>
                                     <td th:text="${contact.homePhoneNumber}"></td>
-                                    <td><a th:href="@{/contact/delete/{path}(path=${contact.id})}" th:text="X"> </a> </td>
+                                    <td><a th:href="@{/contact/delete/{path}(path=${contact.id})}" th:text="X"> </a></td>
                                 </tr>
                             </table>
                         </div>
-                    </div><br/>
+                    </div>
+                    <br/>
                     <a class="btn btn-primary center-block" href="/contact/create" role="button"> Create Contact</a>
                     <a class="btn btn-primary center-block" href="/" role="button"> Back </a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function searchByFirstName() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("searchForFirstName");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("contactsTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        /*]]>*/
+    </script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function searchByLastName() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("searchForLastName");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("contactsTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[2];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        /*]]>*/
+    </script>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        function searchByMobile() {
+            var input, filter, table, tr, td, i;
+            input = document.getElementById("searchForMobilePhone");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("contactsTable");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+        /*]]>*/
+    </script>
 
 </div>
 </html>
