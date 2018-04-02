@@ -4,7 +4,6 @@ import com.nevermind.bu.entity.Contact;
 import com.nevermind.bu.entity.User;
 import com.nevermind.bu.service.interfaces.ContactService;
 import com.nevermind.bu.service.interfaces.UserService;
-import exception.UserExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -46,15 +44,35 @@ public class ContactController {
         return "showContact";
     }
 
-    @PostMapping("/{id}")
-    public String editContact(@PathVariable("id") int id, @Valid Contact contact, Errors errors,
-                              Model model, Principal principal) {
+    @PostMapping("/update")
+    public String editMovie(@Valid Contact contact, Errors errors, Model model, Principal principal) {
         String pUsername = principal.getName();
-        Contact contactById = contactService.getById(id);
+        Contact updated = contactService.getById(contact.getId());
+        User user = userService.getByUsername(principal.getName());
 
-        if (!pUsername.equals(contactById.getUser().getUsername())) {
+
+        if (!pUsername.equals(updated.getUser().getUsername())) {
             return "redirect:/error";
         }
+
+        if (errors.hasErrors()) {
+            model.addAttribute("contact", contact);
+            return "showContact";
+        }
+        updated.setId(contact.getId());
+        updated.setFirstName(contact.getFirstName());
+        updated.setLastName(contact.getLastName());
+        updated.setMiddleName(contact.getMiddleName());
+        updated.setMobilePhoneNumber(contact.getMobilePhoneNumber());
+        updated.setHomePhoneNumber(contact.getHomePhoneNumber());
+        updated.setAddress(contact.getAddress());
+        updated.setEmail(contact.getEmail());
+        updated.setUser(user);
+        contactService.update(updated);
+
+        model.addAttribute("contact", contact);
+        model.addAttribute("message", "Successfully edited!");
+
         return "showContact";
     }
 
@@ -76,7 +94,8 @@ public class ContactController {
         contact.setUser(user);
         Contact newContact = contactService.createNewContact(contact);
         model.addAttribute("contact", newContact);
-        return "redirect:/contact/all";
+        model.addAttribute("message", "Successfully created!");
+        return "createContact";
     }
 
     @GetMapping("/delete/{id}")

@@ -3,48 +3,74 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <div layout:fragment="content">
-    <div class="page-menu">
-        <a href="/">Main</a> > <a href="/contact/all"> Contact List </a> > Contact
-    </div>
-    <h3>Contact Info</h3> <br/>
-    <div th:object="${contact}">
-        <table class="table table-striped">
-            <tr>
-                <td>Id</td>
-                <td th:text="${contact.id}"></td>
-            </tr>
-            <tr>
-                <td>Name</td>
-                <td th:text="${contact.firstName}"></td>
-            </tr>
-            <tr>
-                <td>Last Name</td>
-                <td th:text="${contact.lastName}"></td>
-            </tr>
-            <tr>
-                <td>Middle Name</td>
-                <td th:text="${contact.middleName}"></td>
-            </tr>
-            <tr>
-                <td>Mobile</td>
-                <td th:text="${contact.mobilePhoneNumber}"></td>
-            </tr>
-            <tr>
-                <td>Home Number</td>
-                <td th:text="${contact.homePhoneNumber}"></td>
-            </tr>
-            <tr>
-                <td>Address</td>
-                <td th:text="${contact.address}"></td>
-            </tr>
-            <tr>
-                <td>Email</td>
-                <td th:text="${contact.email}"></td>
-            </tr>
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <div class="page-menu">
+                        <a href="/">Main</a> > <a href="/contact/all"> Contact List </a> > Contact
+                    </div>
+                    <h3>Contact Info</h3> <br/>
+                </div>
+            </div>
+        </div>
+        <form action="update" th:action="@{/contact/update}" th:object="${contact}" method="POST" enctype="utf8">
+            <table class="table table-striped">
+                <tr>
+                    <td> Id </td>
+                    <td> <input class="form-control" type="number" th:value="${contact.id}" th:field="*{id}" hidden="hidden"/> </td>
+                </tr>
 
-        </table>
-        <input class="btn btn-primary center-block" type="submit" value="Save" name="editContact"/>
-        <a class="btn btn-primary center-block" href="/contact/all" role="button"> Back </a>
+                <tr>
+                    <td>Name</td>
+                    <td> <label class="bg-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"> </label>
+                        <input class="form-control" type="text" th:value="${contact.firstName}" th:field="*{firstName}"/> </td>
+                </tr>
+
+                <tr>
+                    <td> Last Name </td>
+                    <td> <label class="bg-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"> </label>
+                        <input class="form-control" type="text" th:value="${contact.lastName}" th:field="*{lastName}"/> </td>
+                </tr>
+
+                <tr>
+                    <td> Middle Name </td>
+                    <td> <label class="bg-danger" th:if="${#fields.hasErrors('middleName')}" th:errors="*{middleName}"> </label>
+                        <input class="form-control" type="text" th:value="${contact.middleName}" th:field="*{middleName}"/> </td>
+                </tr>
+
+                <tr>
+                    <td> Mobile </td>
+                    <td> <label class="bg-danger" th:if="${#fields.hasErrors('mobilePhoneNumber')}" th:errors="*{mobilePhoneNumber}"> </label>
+                        <input class="form-control" type="text" th:value="${contact.mobilePhoneNumber}" th:field="*{mobilePhoneNumber}"/> </td>
+                </tr>
+
+                <tr>
+                    <td>Home Number</td>
+                    <td> <label class="bg-danger" th:if="${#fields.hasErrors('homePhoneNumber')}" th:errors="*{homePhoneNumber}"> </label>
+                        <input class="form-control" type="text" th:value="${contact.homePhoneNumber}" th:field="*{homePhoneNumber}"/> </td>
+                </tr>
+
+                <tr>
+                    <td>Address</td>
+                    <td> <label class="bg-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"> </label>
+                        <input class="form-control" type="text" th:value="${contact.address}" th:field="*{address}"/> </td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td> <label class="bg-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> </label>
+                        <input class="form-control" type="text" th:value="${contact.email}" th:field="*{email}"/> </td>
+                </tr>
+
+            </table>
+
+            <input class="btn btn-primary center-block" type="submit" value="Update" name="update"/>
+            <a class="btn btn-primary center-block" href="/contact/all" role="button"> Back </a>
+        </form>
+        <br/>
+        <h3 th:text="${message}"></h3>
+
     </div>
 
 </div>
