@@ -7,7 +7,7 @@
         <div class="col-sm-12">
             <div class="text-center">
                 <div class="jumbotron">
-                    <h2>Welcome to Phone Book Application!</h2>
+                    <h2>Welcome to Phone Book Application!</h2><br/>
                     <p sec:authorize="!isAuthenticated()"><a class="btn btn-primary center-block" href="/login" role="button"> Login </a></p>
                     <p sec:authorize="!isAuthenticated()"><a class="btn btn-primary center-block" href="/register" role="button"> Register </a></p>
                     <p sec:authorize="isAuthenticated()"><a class="btn btn-primary center-block" href="/contact/all" role="button"> Contacts </a></p>

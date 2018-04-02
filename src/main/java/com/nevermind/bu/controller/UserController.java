@@ -38,7 +38,8 @@ public class UserController {
         try {
             User registered = userService.registerNewUserAccount(user);
             model.addAttribute("user", registered);
-            return "hello";
+            model.addAttribute("message", "Successfully registered!");
+            return "registerUser";
         } catch (UserExistException e) {
             model.addAttribute("duplicate", true);
             model.addAttribute("errorMsq", e.getMessage());
