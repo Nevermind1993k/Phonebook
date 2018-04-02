@@ -2,6 +2,7 @@ package com.nevermind.bu.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Size;
 @Entity
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class Contact {
 
     @Id
@@ -53,8 +55,5 @@ public class Contact {
 
     @ManyToOne(fetch = FetchType.EAGER)
     private User user;
-
-    public Contact() {
-    }
 
 }

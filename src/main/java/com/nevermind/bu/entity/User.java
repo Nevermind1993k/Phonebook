@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @Data
 @AllArgsConstructor
+@RequiredArgsConstructor
 public class User {
 
     @Id
@@ -45,6 +46,4 @@ public class User {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "user", cascade = CascadeType.ALL)
     private List<Contact> contacts;
 
-    public User() {
-    }
 }
